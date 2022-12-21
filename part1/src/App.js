@@ -1,55 +1,49 @@
-const Header = (props) => {
-  return (
-    <>
-    <h1>
-      {props.course}
-    </h1>
-    </>
-  )
-}
+import { useState } from "react";
 
-const Part = (props) => {
-  return (
-    <p>
-      {props.part} {props.exercises}
-    </p>
-  )
-}
+const _ = require('lodash');
 
-const Content = (props) => {
-  return (
-    <>
-    <Part part={props.part1} exercises={props.exercises1} />
-    <Part part={props.part2} exercises={props.exercises2} />
-    <Part part={props.part3} exercises={props.exercises3} />
-    </>
-  )
-}
-
-const Total = (props) => {
-  return (
-    <>
-      <p>Number of exercises {props.total}</p>
-    </>
-  )
-}
 
 const App = () => {
-  const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
 
-  return (
+  const anecdotes = [
+    'If it hurts, do it more often.',
+    'Adding manpower to a late software project makes it later!',
+    'The first 90 percent of the code accounts for the first 10 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.',
+    'Any fool can write code that a computer can understand. Good programmers write code that humans can understand.',
+    'Premature optimization is the root of all evil.',
+    'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
+    'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.'
+  ]
+
+  // const anecdotes_votes = anecdotes.map(anecdote => ({0:anecdote}))
+
+  const [selected, setSelected] = useState(0)
+  const [upvotes, setUpvote] = useState(new Uint8Array(anecdotes.length))
+
+  const upvote = () =>{
+    console.log(selected)
+    const new_copy = [...upvotes]
+    new_copy[selected] +=1
+    setUpvote(new_copy)
+    // setUpvote([
+    //   ...upvotes,
+    //   upvotes[selected] += 1
+    // ])
+  }
+
+  return(
     <div>
-      <Header course = {course}/>
-      <Content part1={part1} part2={part2} part3={part3} exercises1={exercises1} exercises2={exercises2} exercises3={exercises3}/>
-      <Total total={exercises1+exercises2+exercises3}/>
-    </div>
+      <h1>Anecdote of the day</h1>
+      {anecdotes[selected]}
+      <br></br>
+      has {upvotes[selected]} votes
+      <button onClick={upvote}>Vote</button>
+      <button onClick={()=>setSelected(_.random(0,anecdotes.length-1))}>Next Anecdote</button>
+      <br></br>
+      <h1>Anecdote with most votes</h1>
+      <p>{anecdotes[upvotes.indexOf(Math.max(...upvotes))]}</p>
+  </div>
   )
 }
 
-export default App
+export default App;
