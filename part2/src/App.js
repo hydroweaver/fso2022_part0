@@ -22,21 +22,37 @@ function App() {
   const toggleNoteImportance = (id) => {
     console.log('importance of ' + id + ' needs to be toggled')
     const noteImportanceToUpdate = notes.find(note=>note.id===id)
-    noteImportanceToUpdate.important = !noteImportanceToUpdate.important
-    // x[id-1].important = !(x[id-1].important)
-    console.log(id)
-    console.log('notes', notes)
-    const updatedNotes = {
-      ...notes,
-        [id-1]:noteImportanceToUpdate
+    const noteImportanceToUpdateChange = {
+      ...noteImportanceToUpdate,
+      important:!(noteImportanceToUpdate.important)
     }
-      // setNotes(Object.values(updatedNotes));
-    console.log(Object.values(updatedNotes))
-    axios.put(`http://localhost:3001/notes/${id}`, noteImportanceToUpdate)
+    axios.put(`http://localhost:3001/notes/${id}`, noteImportanceToUpdateChange)
     .then(response=>{
-      setNotes(Object.values(updatedNotes));
+      setNotes(
+        notes.map(note=> note.id!==id?note:noteImportanceToUpdateChange)
+      );
     })
   }
+
+  //Older implementation without map, filter etc.
+  // const toggleNoteImportance = (id) => {
+  //   console.log('importance of ' + id + ' needs to be toggled')
+  //   const noteImportanceToUpdate = notes.find(note=>note.id===id)
+  //   noteImportanceToUpdate.important = !noteImportanceToUpdate.important
+  //   // x[id-1].important = !(x[id-1].important)
+  //   console.log(id)
+  //   console.log('notes', notes)
+  //   const updatedNotes = {
+  //     ...notes,
+  //       [id-1]:noteImportanceToUpdate
+  //   }
+  //     // setNotes(Object.values(updatedNotes));
+  //   console.log(Object.values(updatedNotes))
+  //   axios.put(`http://localhost:3001/notes/${id}`, noteImportanceToUpdate)
+  //   .then(response=>{
+  //     setNotes(Object.values(updatedNotes));
+  //   })
+  // }
 
 
   const addNote = (event) => {

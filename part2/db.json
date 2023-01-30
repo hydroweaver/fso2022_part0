@@ -3,52 +3,52 @@
     {
       "id": 1,
       "content": "HTML is easyaaaaaaaaaaaaaaa",
-      "important": true
+      "important": false
     },
     {
       "id": 2,
       "content": "Browser can execute only JavaScript",
-      "important": true
+      "important": false
     },
     {
       "id": 3,
       "content": "GET and POST are the most important methods of HTTP protocol",
-      "important": true
+      "important": false
     },
     {
       "id": 4,
       "date": "2023-01-23T11:53:16.782Z",
-      "important": true,
+      "important": false,
       "content": "hello!"
     },
     {
       "id": 5,
       "date": "2023-01-23T11:55:47.279Z",
-      "important": true,
+      "important": false,
       "content": "new one"
     },
     {
       "id": 6,
       "date": "2023-01-23T12:30:12.337Z",
-      "important": true,
+      "important": false,
       "content": ""
     },
     {
       "id": 7,
       "date": "2023-01-23T15:27:47.161Z",
-      "important": true,
+      "important": false,
       "content": "hi"
     },
     {
       "id": 8,
       "date": "2023-01-23T15:43:31.828Z",
-      "important": true,
+      "important": false,
       "content": ""
     },
     {
       "id": 9,
       "date": "2023-01-23T15:43:34.525Z",
-      "important": true,
+      "important": false,
       "content": "wgwrg"
     }
   ]
